@@ -25,7 +25,7 @@ theme_update(panel.grid = element_blank())
 #old random number generator, to ensure replicability
 #Thanks to Github user @bastistician for pointing this out!
 
-if(getRversion()>= 3.6) RNGversion("3.5.0")
+if(getRversion()>= "3.6.0") RNGversion("3.5.0")
 
 
 
