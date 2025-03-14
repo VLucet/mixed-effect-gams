@@ -224,7 +224,7 @@ full_plot
 CO2 <- transform(CO2, Plant_uo=factor(Plant, ordered=FALSE))
 
 #Loading simulated bird movement data
-bird_move <- read.csv("data/bird_move.csv", stringsAsFactors = TRUE)
+bird_move <- read.csv("../data/bird_move.csv", stringsAsFactors = TRUE)
 
 CO2_vis_plot <- ggplot(CO2, aes(x=conc, 
                                 y=uptake, 
@@ -1207,7 +1207,7 @@ timing_plot
 
 
 #Load the global function for the bird_move dataset
-bird_move_global <- read.csv("data/bird_move_global.csv")
+bird_move_global <- read.csv("../data/bird_move_global.csv")
 
 
 #Simple te() model 
