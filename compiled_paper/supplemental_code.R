@@ -432,7 +432,7 @@ AIC_table <- AIC(CO2_modG,CO2_modGS, CO2_modGI, CO2_modS, CO2_modI,
 #### Code for IV: Examples ####
 
 
-zooplankton <- read.csv("data/zooplankton_example.csv",stringsAsFactors = TRUE)%>%
+zooplankton <- read.csv("../data/zooplankton_example.csv",stringsAsFactors = TRUE)%>%
   mutate(year_f = factor(year))
 
 #This is what the data looks like:
