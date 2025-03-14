@@ -864,7 +864,7 @@ noise_labeller <- function(string) {
   signal_to_noise = as.numeric(string)
   signal_to_noise = 0.5/signal_to_noise^2
   signal_to_noise = as.character(signal_to_noise)
-  TeX(paste("signal:noise =", signal_to_noise)) 
+  latex2exp::TeX(paste("signal:noise =", signal_to_noise)) 
 }
 
 #The derivative plots
