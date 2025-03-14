@@ -84,10 +84,11 @@ biasvar_predict_fit = biasvar_fit %>%
      fitI = as.numeric(predict(.$modI[[1]],
                                newdata = biasvar_predict_data,
                                type="response")))%>%
-  unnest(fitS, fitI) %>%
+  unnest(cols = c(fitS, fitI)) %>%
+  rename(noise_old = noise, rep_old = rep) %>%
   bind_cols(crossing(noise=noise_levels, 
                      rep= 1:n_reps,
-                     biasvar_predict_data))
+                     biasvar_predict_data), .names_repair = "unique")
 
 #turn this into long-format data for plotting, and to make it easier to
 #calculate derivatives
@@ -166,7 +167,7 @@ noise_labeller <- function(string) {
   signal_to_noise = as.numeric(string)
   signal_to_noise = 0.5/signal_to_noise^2
   signal_to_noise = as.character(signal_to_noise)
-  TeX(paste("signal:noise =", signal_to_noise)) 
+  latex2exp::TeX(paste("signal:noise =", signal_to_noise)) 
 }
 
 #The derivative plots
@@ -187,9 +188,9 @@ deriv_plot =  ggplot(data=deriv_est_data,
   scale_y_log10("Fitted wiggliness",
                 limits = c(10^deriv_min,5e+3),expand=c(0,0.1),
                 breaks = c(10^deriv_min,  1e+0, 1e+3), 
-                labels = list(bquote(""<=10^.(deriv_min)),
-                              bquote(10^0), 
-                              bquote(10^3))
+                labels = list(as.character(bquote(""<=10^.(deriv_min))),
+                              as.character(bquote(10^0)), 
+                              as.character(bquote(10^3)))
                 )+
   scale_x_log10("True wiggliness", 
                 breaks= c(1e-3, 1e+0, 1e+3), 
@@ -658,7 +659,7 @@ In our view, the global function fitted in these models should generally be view
 ```{r Fig20, echo=FALSE, fig.width=7, fig.height=3, message=FALSE, warning=FALSE, cache=TRUE, purl=TRUE, fig.cap = "\\label{fig:Fig20}Average global function used for simulating `bird_move` data set (A) compared to the fitted global function for a *GS* model estimated with either a `te()` smoother (B) or a `t2()` smoother with `full=TRUE` (C) for group-level terms. Both group-level smoothers used the same model specification as in section III except for the type of tensor product used. Colors indicate the value of the linear predictor of bird density at each location in each week."}
 
 #Load the global function for the bird_move dataset
-bird_move_global <- read.csv("data/bird_move_global.csv")
+bird_move_global <- read.csv("../data/bird_move_global.csv")
 
 
 #Simple te() model 

@@ -63,16 +63,16 @@ theme_update(panel.grid = element_blank())
 #old random number generator, to ensure replicability
 #Thanks to Github user @bastistician for pointing this out!
 
-if(getRversion()>= 3.6) RNGversion("3.5.0")
+if(getRversion()>= "3.6.0") RNGversion("3.5.0")
 
 ```
 
 ```{r setup_tables, include=FALSE, purl=FALSE}
 #This code is for configuring latex tables. It is not needed for general script
 #usage.
-table_out_format <- ifelse("pdf_document" %in% rmarkdown::all_output_formats("paper_sections/full_document.Rmd"),
+table_out_format <- ifelse("pdf_document" %in% rmarkdown::all_output_formats("full_document.Rmd"),
                     "latex",
-                     ifelse("html_document" %in% rmarkdown::all_output_formats("paper_sections/full_document.Rmd"),
+                     ifelse("html_document" %in% rmarkdown::all_output_formats("full_document.Rmd"),
                             "html",
                             NA_character_)
                       )
