@@ -816,10 +816,11 @@ biasvar_predict_fit = biasvar_fit %>%
      fitI = as.numeric(predict(.$modI[[1]],
                                newdata = biasvar_predict_data,
                                type="response")))%>%
-  unnest(fitS, fitI) %>%
+  unnest(cols = c(fitS, fitI)) %>%
+  rename(noise_old = noise, rep_old = rep) %>%
   bind_cols(crossing(noise=noise_levels, 
                      rep= 1:n_reps,
-                     biasvar_predict_data))
+                     biasvar_predict_data), .names_repair = "unique")
 
 #turn this into long-format data for plotting, and to make it easier to
 #calculate derivatives
