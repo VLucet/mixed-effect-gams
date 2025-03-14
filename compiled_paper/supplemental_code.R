@@ -885,9 +885,9 @@ deriv_plot =  ggplot(data=deriv_est_data,
   scale_y_log10("Fitted wiggliness",
                 limits = c(10^deriv_min,5e+3),expand=c(0,0.1),
                 breaks = c(10^deriv_min,  1e+0, 1e+3), 
-                labels = list(bquote(""<=10^.(deriv_min)),
-                              bquote(10^0), 
-                              bquote(10^3))
+                labels = list(as.character(bquote(""<=10^.(deriv_min))),
+                              as.character(bquote(10^0)), 
+                              as.character(bquote(10^3)))
                 )+
   scale_x_log10("True wiggliness", 
                 breaks= c(1e-3, 1e+0, 1e+3), 
